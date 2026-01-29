@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GDPR – Ta bort mina uppgifter</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --primary:#0f172a;
+  --accent:#2563eb;
+  --accent-gmail:#22c55e;
+  --bg:#f1f5f9;
+  --card:#ffffff;
+  --radius:16px;
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:Inter,system-ui;
+  background:var(--bg);
+  color:var(--primary);
+}
+
+header{
+  padding:70px 20px;
+  text-align:center;
+  background:linear-gradient(135deg,#0f172a,#1e293b);
+  color:#fff;
+}
+header h1{font-size:2.6rem;margin-bottom:10px}
+header p{max-width:760px;margin:auto;opacity:.9}
+
+.container{
+  max-width:980px;
+  margin:auto;
+  padding:40px 20px;
+}
+.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:32px;
+  box-shadow:0 20px 40px rgba(0,0,0,.08);
+  margin-bottom:30px;
+}
+h2{margin-top:0}
+
+label{
+  font-weight:600;
+  margin-top:18px;
+  display:block;
+}
+input,textarea{
+  width:100%;
+  padding:14px;
+  margin-top:8px;
+  border-radius:12px;
+  border:1px solid #cbd5e1;
+  font-size:15px;
+}
+textarea{min-height:130px}
+
+button{
+  width:100%;
+  padding:16px;
+  font-size:16px;
+  font-weight:600;
+  border-radius:14px;
+  border:none;
+  cursor:pointer;
+  margin-top:14px;
+}
+.primary{background:var(--accent);color:#fff}
+.gmail{background:var(--accent-gmail);color:#fff}
+.outlook{background:#2563eb;color:#fff}
+
+.note{
+  font-size:14px;
+  background:#f8fafc;
+  padding:18px;
+  border-radius:12px;
+  border:1px dashed #cbd5e1;
+  line-height:1.6;
+}
+
+footer{
+  text-align:center;
+  padding:30px 20px;
+  font-size:14px;
+  opacity:.85;
+}
+footer a{
+  color:inherit;
+  text-decoration:none;
+  font-weight:600;
+}
+.links a{
+  margin-right:15px;
+  color:var(--accent);
+  text-decoration:none;
+  font-weight:600;
+}
+ul{margin-left:20px;}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🔐 Ta bort mina personuppgifter</h1>
+  <p>
+    Skapa ett professionellt GDPR-mejl (Artikel 17) för att begära borttagning
+    av dina personuppgifter från publika databassajter i Sverige.
+  </p>
+</header>
+
+<div class="container">
+
+<!-- USER INPUT -->
+<div class="card">
+<h2>👤 Dina uppgifter</h2>
+<label>Fullständigt namn</label>
+<input id="name" oninput="updateMessage()">
+<label>Födelsedatum</label>
+<input id="dob" placeholder="YYYY-MM-DD" oninput="updateMessage()">
+<label>Adress</label>
+<input id="address" oninput="updateMessage()">
+<label>E-post</label>
+<input id="email" type="email" oninput="updateMessage()">
+<label>Extra information (valfritt)</label>
+<textarea id="extra" oninput="updateMessage()"></textarea>
+</div>
+
+<!-- EMAIL PREVIEW -->
+<div class="card">
+<h2>📧 E-postmeddelande (förhandsgranskning)</h2>
+<label>Ämne (Subject)</label>
+<input id="subject">
+<label>Meddelande (Body)</label>
+<textarea id="body"></textarea>
+
+<button class="primary" onclick="sendMailto()">📧 Öppna standard-e-post</button>
+<button class="gmail" onclick="sendGmail()">🟢 Skicka via Gmail</button>
+<button class="outlook" onclick="sendOutlook()">🔵 Skicka via Outlook</button>
+</div>
+
+<!-- INFORMATION CARDS -->
+<div class="card">
+<h2>ℹ️ Hur fungerar detta?</h2>
+<p>
+Detta verktyg hjälper dig att <strong>skapa ett färdigt och professionellt GDPR-mejl</strong>
+enligt artikel 17 (rätten att bli raderad).
+</p>
+<p>
+👉 Du fyller i dina uppgifter<br>
+👉 Verktyget skapar ett mejl<br>
+👉 <strong>Du skickar mejlet själv</strong> via ditt eget e-postkonto
+</p>
+<p>Inga uppgifter skickas till oss och inget sparas.</p>
+
+<h2>🎯 Varför finns detta?</h2>
+<p>
+Många i Sverige är inte medvetna om att deras personuppgifter visas offentligt
+på olika webbplatser.
+</p>
+<p>Detta projekt hjälper dig att:</p>
+<ul>
+<li>✔ Skydda din integritet</li>
+<li>✔ Skicka professionellt formulerade GDPR-begäran</li>
+<li>✔ Förstå GDPR och rätten att bli bortglömd</li>
+<li>✔ Vara gratis och tillgängligt för alla</li>
+</ul>
+
+<h2>🔐 Integritet & ansvar</h2>
+<p>
+• Inga data lagras eller skickas<br>
+• Ingen spårning, cookies eller analysverktyg används<br>
+• Allt sker lokalt i webbläsaren<br>
+• Du har full kontroll över om och när mejlet skickas
+</p>
+</div>
+
+<div class="card">
+<h2>🇬🇧 English</h2>
+<p>
+This free tool helps people in Sweden create a professional GDPR Article 17
+(Right to Erasure) email.
+No data is stored. Emails are sent by the user only.
+</p>
+</div>
+
+<div class="links">
+<a href="https://gdpr.eu/">GDPR info</a>
+<a href="https://www.datainspektionen.se/">Datainspektionen (Swedish authority)</a>
+<a href="https://www.regeringen.se/rattsliga-dokument/lagradsremiss/2020/09/dataskyddsforordningen-gdpr/">Swedish GDPR rules</a>
+</div>
+
+</div>
+
+<footer>
+Verktyget är <strong>inte en officiell myndighet</strong>. <br>
+Meron Eid: <a href="mailto:eidmmeron@gmail.com">eidmmeron@gmail.com</a>
+</footer>
+
+<script>
+const subjectEl = document.getElementById("subject");
+const bodyEl = document.getElementById("body");
+
+function updateMessage(){
+  const name = document.getElementById("name").value;
+  const dob = document.getElementById("dob").value;
+  const address = document.getElementById("address").value;
+  const email = document.getElementById("email").value;
+  const extra = document.getElementById("extra").value;
+
+  subjectEl.value = "Begäran om radering av personuppgifter enligt GDPR (Artikel 17)";
+
+  bodyEl.value =
+`Hej,
+
+Jag kontaktar er för att begära radering av mina personuppgifter
+i enlighet med Dataskyddsförordningen (GDPR), Artikel 17
+(rätten att bli bortglömd).
+
+Mina uppgifter:
+Fullständigt namn: ${name}
+Födelsedatum: ${dob}
+Adress: ${address}
+E-post: ${email}
+
+${extra}
+
+Jag ber er att:
+• Ta bort eller dölja mina personuppgifter från er webbplats
+• Upphöra med fortsatt behandling och publicering
+• Bekräfta när åtgärden är genomförd
+
+Om ytterligare verifiering krävs, vänligen informera mig.
+
+Med vänliga hälsningar,
+${name}`;
+}
+
+updateMessage();
+
+function emailData(){
+  return {
+    to: [
+      "info@ratsit.se",
+      "kundservice@hitta.se",
+      "info@mrkoll.se",
+      "kundtjanst@eniro.se",
+      "info@merinfo.se",
+      "info@birthday.se"
+    ].join(","),
+    subject: subjectEl.value,
+    body: bodyEl.value
+  };
+}
+
+function sendMailto(){
+  const {to, subject, body} = emailData();
+  window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+function sendGmail(){
+  const {to, subject, body} = emailData();
+  window.open(
+    `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
+    "_blank"
+  );
+}
+
+function sendOutlook(){
+  const {to, subject, body} = emailData();
+  window.open(
+    `https://outlook.live.com/mail/0/deeplink/compose?to=${encodeURIComponent(to)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
+    "_blank"
+  );
+}
+</script>
+
+</body>
+</html>
